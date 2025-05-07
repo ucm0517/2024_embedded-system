@@ -1,0 +1,23 @@
+#include "stm32f4xx_hal.h"
+
+int main() {
+    HAL_Init(); // HAL ????? ???
+    __HAL_RCC_GPIOC_CLK_ENABLE(); // GPIOC ?? ?? ???
+
+    // GPIOC ?? ??? ??? ? ??
+    GPIO_InitTypeDef GPIO_InitStructure = {0};
+    GPIO_InitStructure.Pin = GPIO_PIN_All; // ?? ? ???
+    GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP; // ?? ??? ??
+    GPIO_InitStructure.Pull = GPIO_NOPULL; // ??/??? ?? ??
+    GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_LOW; // ?? ??? ??
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStructure); // GPIOC ???
+
+    while(1) {
+        // ???? ??? ????? LED ??
+        for (int i = 0; i <= 16; i++) {
+            GPIOC->ODR = (1 << i) -1;//
+            HAL_Delay(500); // 500ms         
+    }
+	}
+}
+

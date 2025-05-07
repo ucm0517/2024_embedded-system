@@ -1,0 +1,24 @@
+PROJECT_NAME = made by antony
+
+OUTPUT_DIRECTORY = C:\성결대학교 강의 및 학습 자료\3학년 1학기\임베디드 시스템\emb\CH4/HTML_practice9.c"_2024.07.16_21h.19m.25s
+
+OUTPUT_LANGUAGE = Korean
+
+OPTIMIZE_OUTPUT_JAVA = NO
+
+CPP_CLI_SUPPORT = YES
+
+INPUT = "c:\성결대학교 강의 및 학습 자료\3학년 1학기\임베디드 시스템\emb\CH4\practice9.c"
+
+RECURSIVE = NO
+
+EXTRACT_ALL = YES
+
+EXTRACT_PRIVATE = YES
+
+EXTRACT_PACKAGE = YES
+
+EXTRACT_STATIC = YES
+
+CLASS_GRAPH = NO
+

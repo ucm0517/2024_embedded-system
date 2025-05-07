@@ -1,0 +1,44 @@
+1000 0011
+0000 0001
+0000 0010 
+1000 0000
+
+int main() {
+	
+	GPIO_InitTypeDef GPIO_InitStructure;
+	HAL_Init();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	
+	GPIO_InitStructure.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;
+	GPIO_InitStructure.Mode = GPIO_MODE_INPUT; 
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_LOW;
+	GPIO_InitStructure.Pull = GPIO_NOPULL;
+	GPIO_InitStructure.Pin = GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_SET);
+	HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
+	
+	
+	int step=1, ss=1, input_data, past_key;
+	unsigned int val =0;
+
+while(1) {
+			input_data = (GPIOA->IDR)&0x83;
+			if((past_key==0)&&(input_data !=0)){
+				if(input_data & 0x80) ss = (ss+1)%2;   //ss = ( ss==1) ? 0 : 1
+				if(input_data & 0x01) step = 1;
+				if(input_data & 0x02) step = -1;
+			}
+			past_key = input_data;
+			if(ss ==1) val = (val + step)%1000;
+	
+			for(int i =0; i<100; i++)
+					segment(val);
+		}
+}
+
+			
